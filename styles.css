@@ -14,8 +14,13 @@
     --red: #8f302d;
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     margin: 0;
@@ -35,9 +40,19 @@ body::before {
     opacity: .11;
 }
 
-button, a { -webkit-tap-highlight-color: transparent; }
-button { cursor: pointer; font: inherit; }
-button:focus-visible, a:focus-visible, input:focus-visible {
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+    font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 3px;
 }
@@ -58,7 +73,11 @@ button:focus-visible, a:focus-visible, input:focus-visible {
     backdrop-filter: blur(12px);
 }
 
-.brand { display: flex; align-items: center; gap: 12px; }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
 .brand-star {
     display: flex;
@@ -94,10 +113,14 @@ button:focus-visible, a:focus-visible, input:focus-visible {
     margin-top: 4px;
 }
 
-.header-actions { display: flex; gap: 9px; }
+.header-actions {
+    display: flex;
+    gap: 9px;
+}
 
 /* Botones del encabezado y herramientas */
-.icon, .smallbtn {
+.icon,
+.smallbtn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -112,7 +135,8 @@ button:focus-visible, a:focus-visible, input:focus-visible {
     transition: .2s;
 }
 
-.icon:hover, .smallbtn:hover {
+.icon:hover,
+.smallbtn:hover {
     background: #e8c68d20;
     border-color: var(--gold);
     transform: translateY(-1px);
@@ -145,7 +169,10 @@ h1 {
     line-height: 1.17;
 }
 
-h1 em { font-style: normal; color: var(--gold); }
+h1 em {
+    font-style: normal;
+    color: var(--gold);
+}
 
 .subtitle {
     color: var(--muted);
@@ -192,7 +219,8 @@ h1 em { font-style: normal; color: var(--gold); }
     overflow: hidden;
 }
 
-.page, .page:only-child {
+.page,
+.page:only-child {
     position: relative;
     width: 100%;
     height: 100%;
@@ -201,7 +229,9 @@ h1 em { font-style: normal; color: var(--gold); }
     overflow: hidden;
 }
 
-.page:first-child { border-right: 0; }
+.page:first-child {
+    border-right: 0;
+}
 
 .page img {
     width: 100%;
@@ -225,13 +255,27 @@ h1 em { font-style: normal; color: var(--gold); }
 }
 
 @keyframes flipIn {
-    from { transform: rotateY(-35deg); opacity: .65; }
-    to { transform: rotateY(0); opacity: 1; }
+    from {
+        transform: rotateY(-35deg);
+        opacity: .65;
+    }
+
+    to {
+        transform: rotateY(0);
+        opacity: 1;
+    }
 }
 
 @keyframes flipBack {
-    from { transform: rotateY(35deg); opacity: .65; }
-    to { transform: rotateY(0); opacity: 1; }
+    from {
+        transform: rotateY(35deg);
+        opacity: .65;
+    }
+
+    to {
+        transform: rotateY(0);
+        opacity: 1;
+    }
 }
 
 /* =====================================================
@@ -256,7 +300,10 @@ h1 em { font-style: normal; color: var(--gold); }
     color: #23140e;
 }
 
-.side:disabled { opacity: .23; cursor: default; }
+.side:disabled {
+    opacity: .23;
+    cursor: default;
+}
 
 /* =====================================================
    TOOLBAR - BARRA DE HERRAMIENTAS
@@ -279,7 +326,9 @@ h1 em { font-style: normal; color: var(--gold); }
     cursor: pointer;
 }
 
-.toolbar #counter { min-width: 120px; }
+.toolbar #counter {
+    min-width: 120px;
+}
 
 /* =====================================================
    TARJETA COMERCIAL - INFORMACIÓN DEL PRODUCTO
@@ -300,8 +349,14 @@ h1 em { font-style: normal; color: var(--gold); }
     box-shadow: 0 14px 36px #0005, inset 0 1px #fff1dc18;
 }
 
-.purchase[hidden] { display: none; }
-.purchase strong, .purchase span { display: block; }
+.purchase[hidden] {
+    display: none;
+}
+
+.purchase strong,
+.purchase span {
+    display: block;
+}
 
 .purchase strong {
     color: #f6d49a;
@@ -387,7 +442,10 @@ footer {
     border-top: 1px solid var(--line);
 }
 
-footer a { color: var(--gold); font-weight: 700; }
+footer a {
+    color: var(--gold);
+    font-weight: 700;
+}
 
 /* =====================================================
    MODALES - CONFIGURACIÓN GENERAL
@@ -419,16 +477,23 @@ dialog::backdrop {
     gap: 35px;
 }
 
-.dialoghead h2 { font-size: 20px; font-weight: 800; }
+.dialoghead h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
 
-.dialoghead button, #closeZoom {
+.dialoghead button,
+#closeZoom {
     background: transparent;
     border: 0;
     color: white;
     font-size: 22px;
 }
 
-#chapters { display: grid; gap: 9px; }
+#chapters {
+    display: grid;
+    gap: 9px;
+}
 
 #chapters button {
     font-size: 12px;
@@ -441,27 +506,121 @@ dialog::backdrop {
     border-radius: 11px;
 }
 
-#chapters button:hover { background: #e8c68d20; }
+#chapters button:hover {
+    background: #e8c68d20;
+}
 
 /* =====================================================
-   MODAL - AMPLIACIÓN DE IMÁGENES
+   MODAL - VISOR DE PÁGINAS
 ===================================================== */
 .zoomDialog {
-    max-width: 96vw;
-    max-height: 96vh;
+    position: fixed;
+    width: min(95vw, 850px);
+    max-width: none;
+    max-height: none;
+    height: min(95dvh, 950px);
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    background: #170f0e;
+    border: 1px solid #e8c68d55;
+    border-radius: 18px;
+    box-shadow: 0 25px 100px #000c;
+}
+
+.zoomDialog::backdrop {
+    background: rgba(0, 0, 0, .92);
+    backdrop-filter: blur(12px);
+}
+
+.zoom-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
     padding: 12px;
 }
 
-.zoomDialog img {
-    display: block;
-    max-height: 83vh;
-    max-width: 88vw;
-    object-fit: contain;
+/* Botón cerrar */
+.zoomDialog .zoom-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+    background: rgba(20, 12, 10, .85);
+    border: 1px solid #e8c68d80;
+    border-radius: 50%;
+    color: var(--cream);
+    font-size: 18px;
+    backdrop-filter: blur(8px);
+    transition: .2s;
 }
 
-.zoomDialog #closeZoom {
+.zoomDialog .zoom-close:hover {
+    background: var(--gold);
+    color: #241716;
+}
+
+/* Contenedor de imagen */
+.zoom-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.zoomDialog .zoom-content img {
     display: block;
-    margin-left: auto;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px #0005;
+}
+
+/* Navegación inferior */
+.zoom-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 14px 0 4px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.zoom-nav {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    background: #ffffff0c;
+    border: 1px solid #e8c68d55;
+    border-radius: 50%;
+    color: var(--gold);
+    transition: .2s;
+}
+
+.zoom-nav:hover:not(:disabled) {
+    background: var(--gold);
+    color: #241716;
+}
+
+.zoom-nav:disabled {
+    opacity: .25;
+    cursor: default;
 }
 
 /* =====================================================
@@ -482,24 +641,61 @@ dialog::backdrop {
 }
 
 @keyframes musicPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
 }
 
 /* =====================================================
    RESPONSIVE - DISPOSITIVOS MÓVILES
 ===================================================== */
 @media (max-width: 680px) {
-    main { padding: 30px 22px 16px; }
-    .top { padding: 12px 15px; }
-    .brand strong { font-size: 12px; }
-    .brand small { font-size: 9px; }
-    .brand-star { width: 40px; height: 40px; }
-    .icon span { display: none; }
+    main {
+        padding: 30px 22px 16px;
+    }
 
-    .reader { padding: 12px 8px; border-radius: 16px; }
-    .reader-stage { position: relative; display: flex; justify-content: center; align-items: center; gap: 0; width: 100%; }
-     /* Página de la revista */
+    .top {
+        padding: 12px 15px;
+    }
+
+    .brand strong {
+        font-size: 12px;
+    }
+
+    .brand small {
+        font-size: 9px;
+    }
+
+    .brand-star {
+        width: 40px;
+        height: 40px;
+    }
+
+    .icon span {
+        display: none;
+    }
+
+    .reader {
+        padding: 12px 8px;
+        border-radius: 16px;
+    }
+
+    .reader-stage {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        width: 100%;
+    }
+
+    /* Página de la revista */
     .book {
         width: 100%;
         max-width: 470px;
@@ -516,8 +712,8 @@ dialog::backdrop {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 48px;
-        height: 48px;
+        width: 35px;
+        height: 35px;
         padding: 0;
         background: rgba(38, 20, 17, .85);
         border: 1px solid rgba(232, 198, 141, .65);
@@ -527,12 +723,17 @@ dialog::backdrop {
     }
 
     /* Posición de los botones */
-    .side.prev { left: 5px; }
-    .side.next { right: 5px; }
+    .side.prev {
+        left: 5px;
+    }
+
+    .side.next {
+        right: 5px;
+    }
 
     /* Iconos */
     .side i {
-        font-size: 31px;
+        font-size: 18px;
         color: var(--gold);
     }
 
@@ -551,9 +752,18 @@ dialog::backdrop {
         pointer-events: none;
     }
 
-    .toolbar { gap: 9px; padding-top: 13px; }
-    .toolbar input { width: 26vw; }
-    .smallbtn { padding: 10px 11px; }
+    .toolbar {
+        gap: 9px;
+        padding-top: 13px;
+    }
+
+    .toolbar input {
+        width: 26vw;
+    }
+
+    .smallbtn {
+        padding: 10px 11px;
+    }
 
     .purchase {
         margin: 15px 6px;
@@ -562,10 +772,53 @@ dialog::backdrop {
         text-align: center;
     }
 
-    .purchase span { font-size: 12px; }
-    .purchase a { width: 100%; text-align: center; white-space: normal; }
-    .subtitle { font-size: 14px; }
-    .eyebrow { font-size: 10px; }
+    .purchase span {
+        font-size: 12px;
+    }
+
+    .purchase a {
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .eyebrow {
+        font-size: 10px;
+    }
+
+    /* Visualizador */
+    .zoomDialog {
+        width: 100vw;
+        height: 100dvh;
+        border: none;
+        border-radius: 0;
+    }
+
+    .zoom-container {
+        padding: 8px;
+    }
+
+    .zoomDialog .zoom-close {
+        top: 15px;
+        right: 15px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .zoomDialog .zoom-content img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 6px;
+    }
+
+    .zoom-footer {
+        gap: 30px;
+        padding: 12px 0;
+    }
 
     /* Boton de audio */
     #musicToggle {
@@ -574,14 +827,19 @@ dialog::backdrop {
         padding: 0;
     }
 
-    #musicToggle i { font-size: 16px; }
+    #musicToggle i {
+        font-size: 16px;
+    }
 }
 
 /* =====================================================
    ACCESIBILIDAD - REDUCCIÓN DE MOVIMIENTO
 ===================================================== */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
         animation-duration: .01ms !important;
         transition-duration: .01ms !important;
     }

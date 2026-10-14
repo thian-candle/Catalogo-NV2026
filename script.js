@@ -76,7 +76,7 @@ function show(n) {
   const page = document.createElement("div");
   page.className =
     "page " +
-    (current > last ? "enter-right" : current < last ? "enter-left" : "");
+    (current > last ? "enter-left" : current < last ? "enter-right" : "");
 
   const img = document.createElement("img");
   img.src = src(current);
@@ -176,73 +176,119 @@ sections.forEach(([label, page]) => {
 });
 
 /* =====================================================
-   MODAL - AMPLIACIÓN DE IMÁGENES
+   MODAL - VISOR DE PÁGINAS
 ===================================================== */
 const zoomDialog = document.getElementById("zoomDialog");
 const zoomImage = document.getElementById("zoomImage");
+const zoomCounter = document.getElementById("zoomCounter");
+const zoomPrev = document.getElementById("zoomPrev");
+const zoomNext = document.getElementById("zoomNext");
+
+let zoomCurrent = 1;
+
+function updateZoom(page) {
+  zoomCurrent = Math.min(TOTAL, Math.max(1, page));
+  zoomImage.src = src(zoomCurrent);
+  zoomImage.alt = `Página ${zoomCurrent} del catálogo navideño`;
+  zoomCounter.textContent = `Página ${zoomCurrent} de ${TOTAL}`;
+
+  zoomPrev.disabled = zoomCurrent === 1;
+  zoomNext.disabled = zoomCurrent === TOTAL;
+}
 
 function zoomPage(page) {
-  zoomImage.src = src(page);
-  zoomDialog.showModal();
+  updateZoom(page);
+  if (!zoomDialog.open) zoomDialog.showModal();
 }
+
+function navigateZoom(direction) {
+  updateZoom(zoomCurrent + direction);
+  show(zoomCurrent);
+}
+
+zoomPrev.addEventListener("click", () => navigateZoom(-1));
+zoomNext.addEventListener("click", () => navigateZoom(1));
 
 document.getElementById("zoom").onclick = () => zoomPage(current);
 document.getElementById("closeZoom").onclick = () => zoomDialog.close();
 
+/* Cerrar al tocar fuera del contenido */
+zoomDialog.addEventListener("click", (e) => {
+  if (e.target === zoomDialog) zoomDialog.close();
+});
+
+/* Navegación con teclado */
+document.addEventListener("keydown", (e) => {
+  if (!zoomDialog.open) return;
+
+  if (e.key === "ArrowRight") {
+    e.preventDefault();
+    navigateZoom(1);
+  }
+
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    navigateZoom(-1);
+  }
+});
+
 /* =====================================================
    REPRODUCTOR - MÚSICA AMBIENTAL
 ===================================================== */
-const musicToggle = document.getElementById('musicToggle');
-const backgroundMusic = document.getElementById('backgroundMusic');
+const musicToggle = document.getElementById("musicToggle");
+const backgroundMusic = document.getElementById("backgroundMusic");
 
 backgroundMusic.volume = 0.25;
 
 function updateMusicButton() {
-    const isPlaying = !backgroundMusic.paused;
+  const isPlaying = !backgroundMusic.paused;
 
-    musicToggle.innerHTML = isPlaying
-        ? '<i class="fa-solid fa-volume-high" aria-hidden="true"></i><span>Silenciar</span>'
-        : '<i class="fa-solid fa-music" aria-hidden="true"></i><span>Música</span>';
+  musicToggle.innerHTML = isPlaying
+    ? '<i class="fa-solid fa-volume-high" aria-hidden="true"></i><span>Silenciar</span>'
+    : '<i class="fa-solid fa-music" aria-hidden="true"></i><span>Música</span>';
 
-    musicToggle.classList.toggle('music-active', isPlaying);
-    musicToggle.setAttribute('aria-pressed', String(isPlaying));
-    musicToggle.setAttribute('aria-label', isPlaying ? 'Pausar música' : 'Activar música');
-    musicToggle.title = isPlaying ? 'Pausar música' : 'Activar música';
+  musicToggle.classList.toggle("music-active", isPlaying);
+  musicToggle.setAttribute("aria-pressed", String(isPlaying));
+  musicToggle.setAttribute(
+    "aria-label",
+    isPlaying ? "Pausar música" : "Activar música",
+  );
+  musicToggle.title = isPlaying ? "Pausar música" : "Activar música";
 }
 
 /* =====================================================
    CONTROL MANUAL DE MÚSICA
 ===================================================== */
-musicToggle.addEventListener('click', async () => {
-    if (!backgroundMusic.paused) {
-        backgroundMusic.pause();
-        return;
-    }
+musicToggle.addEventListener("click", async () => {
+  if (!backgroundMusic.paused) {
+    backgroundMusic.pause();
+    return;
+  }
 
-    try {
-        await backgroundMusic.play();
-    } catch (error) {
-        console.error('Error al reproducir música:', error);
-    }
+  try {
+    await backgroundMusic.play();
+  } catch (error) {
+    console.error("Error al reproducir música:", error);
+  }
 });
 
 /* =====================================================
    REPRODUCCIÓN AUTOMÁTICA
 ===================================================== */
 async function autoPlayMusic() {
-    try {
-        await backgroundMusic.play();
-    } catch (error) {
-        console.log('El navegador requiere interacción para reproducir música.');
-    }
+  try {
+    await backgroundMusic.play();
+  } catch (error) {
+    console.log("El navegador requiere interacción para reproducir música.");
+  }
 }
 
 /* =====================================================
    EVENTOS DEL REPRODUCTOR
 ===================================================== */
-backgroundMusic.addEventListener('play', updateMusicButton);
-backgroundMusic.addEventListener('pause', updateMusicButton);
-backgroundMusic.addEventListener('ended', updateMusicButton);
+backgroundMusic.addEventListener("play", updateMusicButton);
+backgroundMusic.addEventListener("pause", updateMusicButton);
+backgroundMusic.addEventListener("ended", updateMusicButton);
 
 updateMusicButton();
 
