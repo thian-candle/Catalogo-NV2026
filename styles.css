@@ -61,15 +61,22 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .brand { display: flex; align-items: center; gap: 12px; }
 
 .brand-star {
-    display: grid;
-    place-items: center;
-    width: 43px;
-    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
     border-radius: 13px;
     background: linear-gradient(145deg, #e5b96933, #9d412822);
     border: 1px solid #e8c68d55;
-    font-size: 25px;
-    color: var(--gold);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.brand-star img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
 }
 
 .brand strong {
@@ -142,7 +149,7 @@ h1 em { font-style: normal; color: var(--gold); }
 
 .subtitle {
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.7;
     margin: 10px auto 26px;
@@ -337,10 +344,38 @@ h1 em { font-style: normal; color: var(--gold); }
    FOOTER - PIE DE PÁGINA
 ===================================================== */
 .footer-note {
-    color: #d6b48b;
+    max-width: 650px;
+    margin: 35px auto 25px;
+    padding: 25px 20px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.footer-note i {
+    display: block;
+    color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.footer-note strong {
+    display: block;
+    color: var(--gold);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.footer-note p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 12px auto;
+}
+
+.footer-note span {
+    display: block;
+    color: var(--cream);
     font-size: 11px;
-    font-weight: 500;
-    margin: 24px;
+    font-weight: 600;
 }
 
 footer {
@@ -433,17 +468,66 @@ dialog::backdrop {
    RESPONSIVE - DISPOSITIVOS MÓVILES
 ===================================================== */
 @media (max-width: 680px) {
-    main { padding: 30px 9px 16px; }
+    main { padding: 30px 22px 16px; }
     .top { padding: 12px 15px; }
     .brand strong { font-size: 12px; }
     .brand small { font-size: 9px; }
-    .brand-star { width: 36px; height: 36px; }
+    .brand-star { width: 40px; height: 40px; }
     .icon span { display: none; }
 
-    .reader { padding: 13px 5px; border-radius: 16px; }
-    .reader-stage { gap: 5px; }
-    .book { width: min(78vw, 470px); aspect-ratio: 1 / 1; }
-    .side { width: 29px; height: 40px; font-size: 23px; }
+    .reader { padding: 12px 8px; border-radius: 16px; }
+    .reader-stage { position: relative; display: flex; justify-content: center; align-items: center; gap: 0; width: 100%; }
+     /* Página de la revista */
+    .book {
+        width: 100%;
+        max-width: 470px;
+        aspect-ratio: 1 / 1;
+        border-radius: 12px;
+    }
+
+    /* Botones flotantes */
+    .side {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        background: rgba(38, 20, 17, .85);
+        border: 1px solid rgba(232, 198, 141, .65);
+        color: var(--gold);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, .35);
+    }
+
+    /* Posición de los botones */
+    .side.prev { left: 5px; }
+    .side.next { right: 5px; }
+
+    /* Iconos */
+    .side i {
+        font-size: 31px;
+        color: var(--gold);
+    }
+
+    /* Interacción */
+    .side:active:not(:disabled) {
+        background: var(--gold);
+        transform: translateY(-50%) scale(.95);
+    }
+
+    .side:active:not(:disabled) i {
+        color: #23140e;
+    }
+
+    .side:disabled {
+        opacity: .25;
+        pointer-events: none;
+    }
 
     .toolbar { gap: 9px; padding-top: 13px; }
     .toolbar input { width: 26vw; }
@@ -458,7 +542,7 @@ dialog::backdrop {
 
     .purchase span { font-size: 12px; }
     .purchase a { width: 100%; text-align: center; white-space: normal; }
-    .subtitle { font-size: 12px; }
+    .subtitle { font-size: 14px; }
     .eyebrow { font-size: 10px; }
 }
 

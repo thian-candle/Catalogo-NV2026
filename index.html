@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <!-- Configuración general -->
     <meta charset="UTF-8">
@@ -10,22 +11,32 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Favicon navideño Thian Candle -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
 <body>
     <!-- =====================================================
          HEADER - ENCABEZADO PRINCIPAL
     ====================================================== -->
     <header class="top">
         <div class="brand">
-            <span class="brand-star">✦</span>
+            <span class="brand-star">
+                <img src="images/isoTipo.png" alt="Logo Thian Candle">
+            </span>
             <div>
                 <strong>THIAN CANDLE</strong>
                 <small>Chispa de luz, fe y aroma</small>
             </div>
         </div>
         <div class="header-actions">
-            <button id="share" class="icon" aria-label="Compartir revista">↗ <span>Compartir</span></button>
-            <button id="fullscreen" class="icon" aria-label="Pantalla completa">⛶</button>
+            <button id="share" class="icon" aria-label="Compartir revista">
+                <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
+                <span>Compartir</span>
+            </button>
+            <button id="fullscreen" class="icon" aria-label="Pantalla completa">
+                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+            </button>
         </div>
     </header>
 
@@ -36,24 +47,42 @@
         <!-- Presentación del catálogo -->
         <div class="eyebrow">EDICIÓN ESPECIAL · 2026</div>
         <h1>Una Navidad para <em>iluminar</em></h1>
-        <p class="subtitle">Explora nuestra colección artesanal pasando las páginas de la revista.</p>
+        <p class="subtitle">
+            Descubre nuestra colección navideña. 🎄
+            Si encuentras algo que <b>te llamo la atención</b>, debajo de la revista aparecerá
+            un botón para solicitarlo directamente por WhatsApp.<br/> <b>¡Así de fácil!</b>
+        </p>
 
         <!-- =====================================================
-             REVISTA DIGITAL
-        ====================================================== -->
+     REVISTA DIGITAL
+===================================================== -->
         <section class="reader" aria-label="Revista digital">
             <div class="reader-stage">
-                <button class="side prev" id="prev" aria-label="Página anterior">‹</button>
+                <button class="side prev" id="prev" aria-label="Página anterior">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+
                 <div class="book" id="book" aria-live="polite"></div>
-                <button class="side next" id="next" aria-label="Página siguiente">›</button>
+
+                <button class="side next" id="next" aria-label="Página siguiente">
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
             </div>
 
             <!-- Barra de navegación -->
             <div class="toolbar">
                 <span id="counter">Página 1 de 35</span>
                 <input id="slider" type="range" min="1" max="35" value="1" aria-label="Ir a la página">
-                <button id="zoom" class="smallbtn">⌕ Ampliar</button>
-                <button id="toc" class="smallbtn">☰ Índice</button>
+
+                <button id="zoom" class="smallbtn">
+                    <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                    Ampliar
+                </button>
+
+                <button id="toc" class="smallbtn">
+                    <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
+                    Índice
+                </button>
             </div>
         </section>
 
@@ -63,41 +92,63 @@
         <div class="purchase" id="purchase" hidden>
             <div>
                 <strong id="productTitle"></strong>
-                <span>Un detalle especial para iluminar esta Navidad. ¡Haz tu pedido y comparte la magia de regalar!</span>
+                <span>
+                    <i class="fa-solid fa-gift" aria-hidden="true"></i>
+                    Un detalle especial para iluminar esta Navidad.
+                    ¡Haz tu pedido y comparte la magia de regalar!
+                </span>
             </div>
-            <a id="order" target="_blank" rel="noopener noreferrer">✦ Solicitar por WhatsApp</a>
+
+            <a id="order" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                Solicitar por WhatsApp
+            </a>
         </div>
 
         <!-- Información adicional -->
-        <div class="footer-note">Hecho a mano con cera vegetal · Bucaramanga, Colombia</div>
+        <div class="footer-note">
+            <i class="fa-solid fa-heart" aria-hidden="true"></i>
+            <strong>Cada detalle cuenta una historia</strong>
+            <p>Creamos con amor piezas únicas que iluminan momentos especiales y convierten pequeños detalles en grandes
+                recuerdos.</p>
+            <span>Thian Candle · Chispa de luz, fe y aroma</span>
+        </div>
     </main>
 
     <!-- =====================================================
-         FOOTER - PIE DE PÁGINA
-    ====================================================== -->
+     FOOTER - PIE DE PÁGINA
+===================================================== -->
     <footer>
-        © 2026 Thian Candle ·
+        © 2026 JRFactory ·
         <a href="https://www.instagram.com/thian.candle/" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
             Instagram @thian.candle
         </a>
     </footer>
 
     <!-- =====================================================
-         MODAL - ÍNDICE DE LA REVISTA
-    ====================================================== -->
+     MODAL - ÍNDICE DE LA REVISTA
+===================================================== -->
     <dialog id="indexDialog">
         <div class="dialoghead">
-            <h2>Explora la revista</h2>
-            <button id="closeIndex" aria-label="Cerrar">✕</button>
+            <h2>
+                <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                Explora la revista
+            </h2>
+            <button id="closeIndex" aria-label="Cerrar">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
         </div>
         <div id="chapters"></div>
     </dialog>
 
     <!-- =====================================================
-         MODAL - AMPLIACIÓN DE IMÁGENES
-    ====================================================== -->
+     MODAL - AMPLIACIÓN DE IMÁGENES
+===================================================== -->
     <dialog id="zoomDialog" class="zoomDialog">
-        <button id="closeZoom" aria-label="Cerrar imagen">✕</button>
+        <button id="closeZoom" aria-label="Cerrar imagen">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
         <img id="zoomImage" alt="Página ampliada">
     </dialog>
 
@@ -106,4 +157,5 @@
     ====================================================== -->
     <script src="script.js"></script>
 </body>
+
 </html>
