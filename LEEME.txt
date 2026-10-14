@@ -1,0 +1,12 @@
+THIAN CANDLE · Revista Navideña 2026 — Versión 2
+
+1. Extrae la carpeta completa del ZIP.
+2. Abre index.html en Chrome, Edge o Firefox.
+3. Navega con flechas, desliza en celular o usa el índice.
+4. La interfaz usa Montserrat desde Google Fonts (requiere internet para descargarla la primera vez); si no hay conexión se muestra Arial.
+5. Para publicar, sube todos los archivos y la carpeta images a GitHub Pages o Netlify.
+6. Los pedidos se envían al WhatsApp 3209175531. Puedes modificarlo en script.js.
+
+Se conservan las 35 imágenes originales de la revista.
+
+VERSIÓN V3: visualización de una sola página en todos los tamaños de pantalla. Flechas avanzan una página.
