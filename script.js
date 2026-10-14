@@ -190,6 +190,42 @@ document.getElementById("zoom").onclick = () => zoomPage(current);
 document.getElementById("closeZoom").onclick = () => zoomDialog.close();
 
 /* =====================================================
+   REPRODUCTOR - MÚSICA AMBIENTAL
+===================================================== */
+const musicToggle = document.getElementById('musicToggle');
+const backgroundMusic = document.getElementById('backgroundMusic');
+
+backgroundMusic.volume = 0.25;
+
+function updateMusicButton(isPlaying) {
+    musicToggle.innerHTML = isPlaying
+        ? '<i class="fa-solid fa-volume-high" aria-hidden="true"></i><span>Silenciar</span>'
+        : '<i class="fa-solid fa-music" aria-hidden="true"></i><span>Música</span>';
+
+    musicToggle.classList.toggle('music-active', isPlaying);
+    musicToggle.setAttribute('aria-pressed', String(isPlaying));
+    musicToggle.setAttribute('aria-label', isPlaying ? 'Pausar música' : 'Activar música');
+    musicToggle.title = isPlaying ? 'Pausar música' : 'Activar música';
+}
+
+musicToggle.addEventListener('click', async () => {
+    if (backgroundMusic.paused) {
+        try {
+            await backgroundMusic.play();
+            updateMusicButton(true);
+        } catch (error) {
+            console.error('No se pudo reproducir la música:', error);
+        }
+    } else {
+        backgroundMusic.pause();
+        updateMusicButton(false);
+    }
+});
+
+backgroundMusic.addEventListener('pause', () => updateMusicButton(false));
+backgroundMusic.addEventListener('play', () => updateMusicButton(true));
+
+/* =====================================================
    COMPARTIR CATÁLOGO
 ===================================================== */
 const shareButton = document.getElementById("share");

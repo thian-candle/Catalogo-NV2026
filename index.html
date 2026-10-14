@@ -30,6 +30,11 @@
             </div>
         </div>
         <div class="header-actions">
+            <button id="musicToggle" class="icon" aria-label="Activar música" aria-pressed="false"
+                title="Activar música">
+                <i class="fa-solid fa-music" aria-hidden="true"></i>
+                <span>Música</span>
+            </button>
             <button id="share" class="icon" aria-label="Compartir revista">
                 <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
                 <span>Compartir</span>
@@ -38,6 +43,10 @@
                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
             </button>
         </div>
+        <!-- Música ambiental -->
+        <audio id="backgroundMusic" loop preload="none">
+            <source src="audio/navidad.mp3" type="audio/mpeg">
+        </audio>
     </header>
 
     <!-- =====================================================
@@ -50,7 +59,7 @@
         <p class="subtitle">
             Descubre nuestra colección navideña. 🎄
             Si encuentras algo que <b>te llamo la atención</b>, debajo de la revista aparecerá
-            un botón para solicitarlo directamente por WhatsApp.<br/> <b>¡Así de fácil!</b>
+            un botón para solicitarlo directamente por WhatsApp.<br /> <b>¡Así de fácil!</b>
         </p>
 
         <!-- =====================================================

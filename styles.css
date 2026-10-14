@@ -465,6 +465,28 @@ dialog::backdrop {
 }
 
 /* =====================================================
+   REPRODUCTOR - MÚSICA AMBIENTAL
+===================================================== */
+#musicToggle {
+    transition: background .3s ease, border-color .3s ease;
+}
+
+#musicToggle.music-active {
+    background: linear-gradient(135deg, #74402d, #44231e);
+    border-color: var(--gold);
+}
+
+#musicToggle.music-active i {
+    color: var(--gold);
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+/* =====================================================
    RESPONSIVE - DISPOSITIVOS MÓVILES
 ===================================================== */
 @media (max-width: 680px) {
@@ -544,6 +566,15 @@ dialog::backdrop {
     .purchase a { width: 100%; text-align: center; white-space: normal; }
     .subtitle { font-size: 14px; }
     .eyebrow { font-size: 10px; }
+
+    /* Boton de audio */
+    #musicToggle {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+    }
+
+    #musicToggle i { font-size: 16px; }
 }
 
 /* =====================================================
