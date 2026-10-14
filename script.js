@@ -197,7 +197,9 @@ const backgroundMusic = document.getElementById('backgroundMusic');
 
 backgroundMusic.volume = 0.25;
 
-function updateMusicButton(isPlaying) {
+function updateMusicButton() {
+    const isPlaying = !backgroundMusic.paused;
+
     musicToggle.innerHTML = isPlaying
         ? '<i class="fa-solid fa-volume-high" aria-hidden="true"></i><span>Silenciar</span>'
         : '<i class="fa-solid fa-music" aria-hidden="true"></i><span>Música</span>';
@@ -208,22 +210,46 @@ function updateMusicButton(isPlaying) {
     musicToggle.title = isPlaying ? 'Pausar música' : 'Activar música';
 }
 
+/* =====================================================
+   CONTROL MANUAL DE MÚSICA
+===================================================== */
 musicToggle.addEventListener('click', async () => {
-    if (backgroundMusic.paused) {
-        try {
-            await backgroundMusic.play();
-            updateMusicButton(true);
-        } catch (error) {
-            console.error('No se pudo reproducir la música:', error);
-        }
-    } else {
+    if (!backgroundMusic.paused) {
         backgroundMusic.pause();
-        updateMusicButton(false);
+        return;
+    }
+
+    try {
+        await backgroundMusic.play();
+    } catch (error) {
+        console.error('Error al reproducir música:', error);
     }
 });
 
-backgroundMusic.addEventListener('pause', () => updateMusicButton(false));
-backgroundMusic.addEventListener('play', () => updateMusicButton(true));
+/* =====================================================
+   REPRODUCCIÓN AUTOMÁTICA
+===================================================== */
+async function autoPlayMusic() {
+    try {
+        await backgroundMusic.play();
+    } catch (error) {
+        console.log('El navegador requiere interacción para reproducir música.');
+    }
+}
+
+/* =====================================================
+   EVENTOS DEL REPRODUCTOR
+===================================================== */
+backgroundMusic.addEventListener('play', updateMusicButton);
+backgroundMusic.addEventListener('pause', updateMusicButton);
+backgroundMusic.addEventListener('ended', updateMusicButton);
+
+updateMusicButton();
+
+/* =====================================================
+   INICIALIZACIÓN DE MÚSICA
+===================================================== */
+autoPlayMusic();
 
 /* =====================================================
    COMPARTIR CATÁLOGO
