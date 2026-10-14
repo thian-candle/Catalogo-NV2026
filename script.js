@@ -187,13 +187,23 @@ const zoomNext = document.getElementById("zoomNext");
 let zoomCurrent = 1;
 
 function updateZoom(page) {
-  zoomCurrent = Math.min(TOTAL, Math.max(1, page));
+  zoomCurrent = Math.min(TOTAL, Math.max(1, Number(page)));
+
   zoomImage.src = src(zoomCurrent);
   zoomImage.alt = `Página ${zoomCurrent} del catálogo navideño`;
   zoomCounter.textContent = `Página ${zoomCurrent} de ${TOTAL}`;
 
-  zoomPrev.disabled = zoomCurrent === 1;
-  zoomNext.disabled = zoomCurrent === TOTAL;
+  const isFirst = zoomCurrent === 1;
+  const isLast = zoomCurrent === TOTAL;
+
+  zoomImage.style.animation = "none";
+  void zoomImage.offsetWidth;
+  zoomImage.style.animation = "zoomFade .3s ease";
+
+  zoomPrev.disabled = isFirst;
+  zoomNext.disabled = isLast;
+  zoomPrevFloat.disabled = isFirst;
+  zoomNextFloat.disabled = isLast;
 }
 
 function zoomPage(page) {
@@ -211,6 +221,15 @@ zoomNext.addEventListener("click", () => navigateZoom(1));
 
 document.getElementById("zoom").onclick = () => zoomPage(current);
 document.getElementById("closeZoom").onclick = () => zoomDialog.close();
+
+/* =====================================================
+   VISOR - NAVEGACIÓN FLOTANTE
+===================================================== */
+const zoomPrevFloat = document.getElementById('zoomPrevFloat');
+const zoomNextFloat = document.getElementById('zoomNextFloat');
+
+zoomPrevFloat.addEventListener('click', () => navigateZoom(-1));
+zoomNextFloat.addEventListener('click', () => navigateZoom(1));
 
 /* Cerrar al tocar fuera del contenido */
 zoomDialog.addEventListener("click", (e) => {
@@ -231,6 +250,29 @@ document.addEventListener("keydown", (e) => {
     navigateZoom(-1);
   }
 });
+
+/* =====================================================
+   VISOR - NAVEGACIÓN TÁCTIL
+===================================================== */
+const zoomContent = document.querySelector('.zoom-content');
+
+let zoomStartX = 0;
+let zoomStartY = 0;
+
+zoomContent.addEventListener('touchstart', e => {
+    zoomStartX = e.touches[0].clientX;
+    zoomStartY = e.touches[0].clientY;
+}, { passive: true });
+
+zoomContent.addEventListener('touchend', e => {
+    const deltaX = e.changedTouches[0].clientX - zoomStartX;
+    const deltaY = e.changedTouches[0].clientY - zoomStartY;
+
+    /* Evitar cambios al desplazarse verticalmente */
+    if (Math.abs(deltaX) < 60 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+
+    navigateZoom(deltaX < 0 ? 1 : -1);
+}, { passive: true });
 
 /* =====================================================
    REPRODUCTOR - MÚSICA AMBIENTAL

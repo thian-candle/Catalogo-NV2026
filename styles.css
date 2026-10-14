@@ -570,6 +570,7 @@ dialog::backdrop {
 
 /* Contenedor de imagen */
 .zoom-content {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -587,6 +588,10 @@ dialog::backdrop {
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 8px 30px #0005;
+}
+
+.zoom-float {
+    display: none;
 }
 
 /* Navegación inferior */
@@ -621,6 +626,18 @@ dialog::backdrop {
 .zoom-nav:disabled {
     opacity: .25;
     cursor: default;
+}
+
+/* =====================================================
+   VISOR - ANIMACIÓN DE IMÁGENES
+===================================================== */
+.zoom-content img {
+    animation: zoomFade .3s ease;
+}
+
+@keyframes zoomFade {
+    from { opacity: .5; transform: scale(.98); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* =====================================================
@@ -709,7 +726,7 @@ dialog::backdrop {
         top: 50%;
         transform: translateY(-50%);
         z-index: 5;
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
         width: 35px;
@@ -808,15 +825,64 @@ dialog::backdrop {
         width: 38px;
         height: 38px;
     }
+/* Contenedor de la fotografía */
+    .zoom-content {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
 
-    .zoomDialog .zoom-content img {
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 6px;
+    /* Botones flotantes */
+    .zoom-float {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 48px;
+        padding: 0;
+        background: rgba(38, 20, 17, .78);
+        border: 1px solid rgba(232, 198, 141, .65);
+        border-radius: 12px;
+        color: var(--gold);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, .35);
+        transition: background .2s ease;
+    }
+
+    /* Posición de las flechas */
+    .zoom-float-prev { left: 5px; }
+    .zoom-float-next { right: 5px; }
+
+    /* Iconos */
+    .zoom-float i {
+        font-size: 15px;
+        color: var(--gold);
+    }
+
+    /* Interacción */
+    .zoom-float:active:not(:disabled) {
+        background: var(--gold);
+    }
+
+    .zoom-float:active:not(:disabled) i {
+        color: #241716;
+    }
+
+    .zoom-float:disabled {
+        opacity: .2;
+        pointer-events: none;
+    }
+
+    /* Ocultar navegación inferior, conservar contador */
+    .zoom-footer .zoom-nav {
+        display: none;
     }
 
     .zoom-footer {
-        gap: 30px;
         padding: 12px 0;
     }
 
